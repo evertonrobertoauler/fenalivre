@@ -1,23 +1,28 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
 # Django settings for fenalivre project.
+import os
+
+PROJECT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    (u'Éverton R. Auler', 'evertonrobertoauler@gmail.com'),
 )
 
 MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': '%s/fenalivre.db' % PROJECT_DIR,  # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
+        'HOST': '',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',  # Set to empty string for default.
     }
 }
 
@@ -29,11 +34,11 @@ ALLOWED_HOSTS = []
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'America/Sao_Paulo'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-BR'
 
 SITE_ID = 1
 
@@ -50,12 +55,12 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = '%s/static/media/' % PROJECT_DIR
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
+MEDIA_URL = '/static/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -69,9 +74,8 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    ('assets', '%s/static/' % PROJECT_DIR),
+    ('media', MEDIA_ROOT),
 )
 
 # List of finder classes that know how to find static files in
@@ -108,9 +112,7 @@ ROOT_URLCONF = 'fenalivre.urls'
 WSGI_APPLICATION = 'fenalivre.wsgi.application'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    PROJECT_DIR + '/templates',
 )
 
 INSTALLED_APPS = (
@@ -121,9 +123,12 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'programacao',
+    'user',
+    'social_auth',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -154,3 +159,49 @@ LOGGING = {
         },
     }
 }
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+    'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.google.GoogleOAuth2Backend',
+    'social_auth.backends.contrib.linkedin.LinkedinBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.request',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.contrib.messages.context_processors.messages',
+    'social_auth.context_processors.social_auth_by_name_backends',
+    'social_auth.context_processors.social_auth_backends',
+    'social_auth.context_processors.social_auth_by_type_backends',
+    'social_auth.context_processors.social_auth_login_redirect',
+)
+
+LOGIN_URL = '/user/login/'
+LOGIN_REDIRECT_URL = '/user/profile/'
+LOGIN_ERROR_URL = '/user/login/'
+
+SOCIAL_AUTH_COMPLETE_URL_NAME     = 'socialauth_complete'
+SOCIAL_AUTH_ASSOCIATE_URL_NAME    = 'socialauth_associate_complete'
+SOCIAL_AUTH_CREATE_USERS          = True
+SOCIAL_AUTH_FORCE_RANDOM_USERNAME = False
+SOCIAL_AUTH_DEFAULT_USERNAME      = 'socialauth_user'
+SOCIAL_AUTH_COMPLETE_URL_NAME     = 'socialauth_complete'
+SOCIAL_AUTH_ERROR_KEY             = 'socialauth_error'
+
+TWITTER_CONSUMER_KEY              = '9c8EGa1XezAxoiucdEKWFQ'
+TWITTER_CONSUMER_SECRET           = 'jfmPVd4wRXPl0rMLOAFA5ropGAwiiwxhj5Q3TBw9w'
+
+FACEBOOK_APP_ID                   = '193079670855805'
+FACEBOOK_API_SECRET               = '066d37b55e9f76da578336786269a16d'
+
+LINKEDIN_CONSUMER_KEY             = 'f93jps39dxx5' 
+LINKEDIN_CONSUMER_SECRET          = '0vXZP7tpqAVjNi2H' 
+
+GOOGLE_OAUTH2_CLIENT_ID           = '190133021467.apps.googleusercontent.com'
+GOOGLE_OAUTH2_CLIENT_SECRET       = 'DWY9KifZ5F0MzG2iJLxww2gL'
+GOOGLE_OAUTH2_USE_UNIQUE_USER_ID  = True

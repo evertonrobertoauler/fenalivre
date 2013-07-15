@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+	{% if form.erros %}
+		<p class="error">Sorry, that's not a valid usernameor passord</p>
+	{% endif %}
+	
+	<form action="" method="post">
+		{% csrf_token %}
+		
+		<p>
+			<a href="{% url 'socialauth_begin' 'google-oauth2' %}"><img title="Google" src="{% static "assets/images/google.png" %}"></a>
+			<a href="{% url 'socialauth_begin' 'facebook' %}"><img title="Facebook" src="{% static "assets/images/facebook.png" %}"></a>
+			<a href="{% url 'socialauth_begin' 'linkedin' %}"><img title="Linkedin" src="{% static "assets/images/linkedin.png" %}"></a>
+			<a href="{% url 'socialauth_begin' 'twitter' %}"><img title="Twitter" src="{% static "assets/images/twitter.png" %}"></a>
+		</p>
+		
+		<br />
+		
+		<label for="username">User name:</label>
+		<input type="text" name="username" value="" id="username">
+		<label for="password">Password:</label>
+		<input type="password" name="password" value="" id="password">
+		
+		<input type="submit" value="Login"/>
+	</form>
+{% endblock %}

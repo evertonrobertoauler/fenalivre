@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>{% block title %}My Base Template{% endblock %}</title>
+		
+		<link rel="stylesheet" type="text/css" href="{% static "assets/css/default.css"%}">
+		
+	</head>
+	<body>
+		<div id="page">
+			<div id="sidebar">
+				{% block sidebar %}
+					<ul>
+						<li><a href="/admin/">Admin</a></li>
+						{% if user.is_authenticated %} 
+							<li><a href="/user/logout/">Logout</a></li>
+						{% else %}
+							<li><a href="/user/login/">Login</a></li>
+						{% endif%}
+					</ul>
+				{% endblock %}
+			</div>
+			<div id="content">
+				{% block content %}
+					This is de content area!
+				{% endblock %}
+				<img src="{% static "assets/images/python.png" %}">
+			</div>
+		</div>
+	</body>
+</html>
