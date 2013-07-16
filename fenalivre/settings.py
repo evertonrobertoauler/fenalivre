@@ -74,7 +74,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    ('assets', '%s/static/' % PROJECT_DIR),
+    ('src', '%s/static/' % PROJECT_DIR),
     ('media', MEDIA_ROOT),
 )
 

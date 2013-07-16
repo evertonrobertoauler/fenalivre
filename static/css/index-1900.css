@@ -1,0 +1,106 @@
+body{
+	margin: 0px;
+	padding: 0px;
+	background: #d6d6d6; /* Old browsers */
+	width: 100%;
+	height: 80%;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+header{
+	position: relative;
+	margin:0px auto;
+	background-color: #064C6C;
+	width: 1600px;
+	height: 200px;
+	top: -110px;
+	border-radius: 50% 50% 50% 50%;
+	box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.5);
+}
+
+article{
+	position:relative;
+	width: 100%;
+	height: 74.8%;
+}
+
+section{
+	position:relative;
+	width: 100%;
+	height: 25%;
+	background-color: #0093D6;
+}
+
+header img{
+	margin-top:  125px;
+	margin-left: 600px;
+}
+
+#tux-position{
+	position: relative;
+	display: block;
+	width:  282px;
+	height: 300px;
+	margin-left: 60%;
+	background-image: url('../img/tux-big.png');
+}
+
+#tux-caixa{
+	position:absolute;
+	display: block;
+	width:  290px;
+	height: 178px; 
+	margin-left:30px;
+	top:-70px;
+	background-image: url('../img/inbox.png');
+}
+
+#inscricoes{
+	display: block;
+	margin-top: -170px;
+	margin-left: 30%;
+	width: 480px;
+	color:#064C6C;
+	font-size: 2.9em;
+}
+
+#saiba-mais{
+	position: absolute;
+	text-decoration: none;
+	margin-top: 10px;
+	margin-left: 360px;
+	color:white;
+}
+
+#saiba-mais ul{
+	margin-left:0; 
+	padding-left:0px; 
+	border:0px;
+}
+
+#saiba-mais ul li{
+	list-style: none;
+	padding-bottom: 3px; 
+}
+
+#saiba-mais a{
+	text-decoration: none;
+	color: white;
+}
+
+#saiba-mais a:hover{
+	text-decoration:  none;
+	color:#064C6C;
+}
+
+.columns{
+	-moz-column-count:5;
+    -moz-column-gap:25px;
+    -moz-column-rule: 1px solid white;
+    -moz-column-width:280px;
+
+}
+
+.columns span{
+	font-weight:bold;
+}

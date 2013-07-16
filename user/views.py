@@ -5,6 +5,9 @@ from django.core.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 from django.template.context import RequestContext
 
+def index(request):
+    return render_to_response('base.html', context_instance=RequestContext(request))
+
 def login(request):
     c = {}
     c.update(csrf(request))

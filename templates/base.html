@@ -1,32 +1,79 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE>
+<html>
 	<head>
-		<title>{% block title %}My Base Template{% endblock %}</title>
+		<title>{% block title %}Fenalivre{% endblock %}</title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" media="(max-width: 800px)" href="{% static "src/css/index-800.css" %}">
+		<link rel="stylesheet" media="(min-width: 1200px)" href="{% static "src/css/index-1200.css" %}">
+		<link rel="stylesheet" media="(min-width: 1900px)" href="{% static "src/css/index-1900.css" %}">
 		
-		<link rel="stylesheet" type="text/css" href="{% static "assets/css/default.css"%}">
-		
+		<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Ubuntu'>
 	</head>
 	<body>
-		<div id="page">
-			<div id="sidebar">
-				{% block sidebar %}
-					<ul>
-						<li><a href="/admin/">Admin</a></li>
-						{% if user.is_authenticated %} 
-							<li><a href="/user/logout/">Logout</a></li>
-						{% else %}
-							<li><a href="/user/login/">Login</a></li>
-						{% endif%}
-					</ul>
-				{% endblock %}
+		<header><img src="{% static "src/img/fenalivre.png" %}"/></header>
+		<nav>
+			{% block sidebar %}
+				<ul>
+					<li><a href="/admin/">Admin</a></li>
+					{% if user.is_authenticated %} 
+						<li><a href="/user/logout/">Logout</a></li>
+					{% else %}
+						<li><a href="/user/login/">Login</a></li>
+					{% endif%}
+				</ul>
+			{% endblock %}
+		</nav>
+		<article>
+			<div id="tux-position"> </div>
+			<div id="inscricoes">
+				{% block content %}<b>Em breve novidades!</b>{% endblock %}
 			</div>
-			<div id="content">
-				{% block content %}
-					This is de content area!
-				{% endblock %}
-				<img src="{% static "assets/images/python.png" %}">
+		</article>
+			
+		<section>
+			<div id="tux-caixa"> </div>
+			<div id="saiba-mais" class="columns">
+				<span>SOBRE O FENALIVRE</span>
+				<ul>
+					<li><a href="">Como surgiu?</a></li>
+					<li><a href="">Princípios</a></li>
+					<li><a href="">Organização</a></li>
+					<li><br></li>
+				</ul>
+
+				<span>PRÓXIMA EDIÇÃO</span>
+				<ul>
+					<li><a href="">Atrações</a></li>
+					<li><a href="">Local</a></li>
+					<li><a href="">Fotos</a></li>
+					<li><br></li>
+				</ul>
+
+				<span>EDIÇÕES ANTERIORES</span>
+				<ul>
+					<li><a href="13.05/index.html">13.05</a></li>
+					<li><a href="12.09/index.html">12.09</a></li>
+					<li><br></li>
+					<li><br></li>
+				</ul>
+
+				<span>COMO AJUDAR</span>
+				<ul>
+					<li><a href="">Quero palestrar</a></li>
+					<li><a href="">Quero dar uma oficina</a></li>
+					<li><a href="">Quero patrocinar</a></li>
+					<li><a href="">Junte-se a nós</a></li>
+				</ul>
+				
+				<span>SOCIAL</span>
+				<ul>
+					<li><a href="">Facebook</a></li>
+					<li><a href="">Twitter</a></li>
+					<li><a href="">Youtube</a></li>
+					<li><br></li>
+				</ul>
 			</div>
-		</div>
+		</section>
 	</body>
 </html>

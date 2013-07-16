@@ -9,5 +9,5 @@ urlpatterns = patterns('',
     url(r'^social_auth/login/', include('social_auth.urls')),
     url(r'^user/', include('user.urls')),
     
-    url(r'^$', 'user.views.login'),
+    url(r'^$', 'user.views.index'),
 )
