@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block content %}
-	<form action="" method="post">
+	{% if form.errors %}
+		<p>{{ form.username.label_tag }} ou {{ form.password.label_tag }} inválidos. Tente novamente.</p>
+	{% endif %}
+
+	<form action="{% url 'django.contrib.auth.views.login' %}" method="post">
 		{% csrf_token %}
 		
 		<p>
@@ -11,11 +16,13 @@
 			<a href="{% url 'socialauth_begin' 'twitter' %}"><img title="Twitter" src="{% static "src/img/twitter.png" %}"></a>
 		</p>
 
-		<label for="username">Usuário:</label>
-		<input type="text" name="username" value="" id="username">
-		<label for="password">Senha:</label>
-		<input type="password" name="password" value="" id="password">
+		<label for="username">{{ form.username.label_tag }}</label>
+		{{ form.username }}
 		
-		<input type="submit" value="Login"/>
+		<label for="password">{{ form.password.label_tag }}</label>
+		{{ form.password }}
+
+		<input type="submit" value="Login" />
+		<input type="hidden" name="next" value="{{ next }}" />
 	</form>
 {% endblock %}

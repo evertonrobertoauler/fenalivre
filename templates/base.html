@@ -15,17 +15,22 @@
 		<nav>
 			{% block sidebar %}
 				<ul>
-					<li><a href="/admin/">Admin</a></li>
+					{% if user.is_superuser %}
+						<li><a href="/admin/">Admin</a></li>
+					{% endif %}
+					
 					{% if user.is_authenticated %} 
 						<li><a href="/user/logout/">Logout</a></li>
 					{% else %}
 						<li><a href="/user/login/">Login</a></li>
+						<li><a href="/user/registro/">Registrar-se</a></li>
 					{% endif%}
 				</ul>
 			{% endblock %}
 		</nav>
 		<article>
 			<div id="tux-position"> </div>
+			
 			<div id="inscricoes">
 				{% block content %}<b>Em breve novidades!</b>{% endblock %}
 			</div>

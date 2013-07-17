@@ -101,6 +101,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'user.middleware.LoginRequiredMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -179,6 +180,14 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'social_auth.context_processors.social_auth_backends',
     'social_auth.context_processors.social_auth_by_type_backends',
     'social_auth.context_processors.social_auth_login_redirect',
+)
+
+# exeções para o LoginRequiredMiddleware
+LOGIN_EXEMPT_URLS = (
+    r'^$',
+    r'^user/registro/$',
+    r'^social_auth/login/',
+    r'^admin/',
 )
 
 LOGIN_URL = '/user/login/'
