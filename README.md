@@ -7,12 +7,22 @@
     sudo apt-get install python-django
     sudo apt-get install python-pip
     pip install django-social-auth
+    pip install django-registration
 
 após obtenha o repositório do github e siga os demais passos:
 
     git clone https://github.com/evertonrobertoauler/fenalivre.git
     cd fenalivre
-    python manage.py syncdb
     python manage.py runserver
 
 e já estará rodando, no endereço default http://127.0.0.1:8000/"
+
+Super usuário para acesso:
+Usuário: fenalivre
+Senha: fenalivre
+
+para que funcione o registro simple de usuário, sem rede social é so abrir o fenalivre/fenalivre/settings.py
+final do arquivo substituir o valor destas variaveis por seu email e senha do gmail, para que o envio de email com SMTP funcione:
+
+    EMAIL_HOST_USER = 'exemplo@gmail.com'
+    EMAIL_HOST_PASSWORD = 'senha'
