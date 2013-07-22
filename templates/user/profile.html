@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-	<h2>Olá {{full_name}}!</h2>
+	<h2>Olá {{ user.first_name }} {{ user.last_name }}!</h2>
+	<p>Instituição Ensino: {{ user.get_profile.instituicao}}</p>
+	<p>Curso: {{ user.get_profile.curso}}</p>
+	<p>Cidade: {{ user.get_profile.get_cidade_estado }}</p>
+	<p>Estara presente: {{ user.get_profile.get_estara_presente_display }}</p>
+	    
+	<p><a href="/user/profile/editar/">Editar Perfil</a></p>
 	<p>Click <a href="/user/logout/">aqui</a> para sair.</p>
 {% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+	<h1>Programação</h1>
+	
+	<h3>Palestras</h3>
+	{% for palestra in palestras %}
+		<p> {{ palestra.inicio }} {{ palestra }} {{ palestra.palestrante }}</p>
+	{% endfor %}
+	
+	<h3>Oficinas</h3>
+	{% for oficina in oficinas %}
+		<p> {{ oficina.inicio }} {{ oficina }} {{ oficina.palestrante }}</p>
+	{% endfor %}
+{% endblock %}

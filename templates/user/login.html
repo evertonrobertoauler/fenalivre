@@ -4,25 +4,32 @@
 {% block content %}
 	{% if form.errors %}
 		<p>{{ form.username.label_tag }} ou {{ form.password.label_tag }} inválidos. Tente novamente.</p>
+		<p>Caso você já tenha feito seu cadastro, faça a ativação da sua conta, apartir do link lhe enviado por email.</p>
 	{% endif %}
 
-	<form action="{% url 'django.contrib.auth.views.login' %}" method="post">
+	<form action="" method="post">
 		{% csrf_token %}
 		
 		<p>
 			<a href="{% url 'socialauth_begin' 'google-oauth2' %}"><img title="Google" src="{% static "src/img/google.png" %}"></a>
 			<a href="{% url 'socialauth_begin' 'facebook' %}"><img title="Facebook" src="{% static "src/img/facebook.png" %}"></a>
-			<a href="{% url 'socialauth_begin' 'linkedin' %}"><img title="Linkedin" src="{% static "src/img/linkedin.png" %}"></a>
 			<a href="{% url 'socialauth_begin' 'twitter' %}"><img title="Twitter" src="{% static "src/img/twitter.png" %}"></a>
 		</p>
 
-		<label for="username">{{ form.username.label_tag }}</label>
-		{{ form.username }}
-		
-		<label for="password">{{ form.password.label_tag }}</label>
-		{{ form.password }}
+		{% for field in form.visible_fields %}
+  			<div {% if field.errors %}class="field_error"{% endif %}>
+   		 		
+   		 		{{ field.label_tag }}
+    			{{ field }}
+		    	{% for err in field.errors %}
+		    		<span class="error_message">{{ err }}</span>
+		    	{% endfor %}
+	  		</div>
+		{% endfor %}
 
 		<input type="submit" value="Login" />
 		<input type="hidden" name="next" value="{{ next }}" />
 	</form>
+	
+	<p><a href="/registro/registrar/">Registrar-se</a></p>
 {% endblock %}

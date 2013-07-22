@@ -9,21 +9,24 @@
 		<link rel="stylesheet" media="(min-width: 1900px)" href="{% static "src/css/index-1900.css" %}">
 		
 		<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Ubuntu'>
+		
+		{% block head %}{% endblock %}
 	</head>
 	<body>
 		<header><img src="{% static "src/img/fenalivre.png" %}"/></header>
 		<nav>
 			{% block sidebar %}
 				<ul>
+					<li><a href="/programacao/">Progração</a></li>
 					{% if user.is_superuser %}
 						<li><a href="/admin/">Admin</a></li>
 					{% endif %}
 					
 					{% if user.is_authenticated %} 
-						<li><a href="/user/logout/">Logout</a></li>
+						<li><a href="/user/profile/">Perfil</a></li>
+						<li><a href="/user/logout/">Sair</a></li>
 					{% else %}
-						<li><a href="/user/login/">Login</a></li>
-						<li><a href="/user/registro/">Registrar-se</a></li>
+						<li><a href="/user/login/">Entrar</a></li>
 					{% endif%}
 				</ul>
 			{% endblock %}

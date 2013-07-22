@@ -2,8 +2,7 @@
 # -*- encoding: utf-8 -*-
 # Django settings for fenalivre project.
 import os
-
-PROJECT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
+DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -17,7 +16,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '%s/fenalivre.db' % PROJECT_DIR,  # Or path to database file if using sqlite3.
+        'NAME': os.path.join(DIR, 'fenalivre.db'),  # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -55,7 +54,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = '%s/static/media/' % PROJECT_DIR
+MEDIA_ROOT = os.path.join(DIR, 'static', 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -74,7 +73,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    ('src', '%s/static/' % PROJECT_DIR),
+    ('src', os.path.join(DIR, 'static')),
     ('media', MEDIA_ROOT),
 )
 
@@ -113,7 +112,7 @@ ROOT_URLCONF = 'fenalivre.urls'
 WSGI_APPLICATION = 'fenalivre.wsgi.application'
 
 TEMPLATE_DIRS = (
-    PROJECT_DIR + '/templates',
+    os.path.join(DIR, 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -123,10 +122,9 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'registration',
+    'registro',
     'programacao',
     'user',
     'social_auth',
@@ -165,9 +163,10 @@ AUTHENTICATION_BACKENDS = (
     'social_auth.backends.twitter.TwitterBackend',
     'social_auth.backends.facebook.FacebookBackend',
     'social_auth.backends.google.GoogleOAuth2Backend',
-    'social_auth.backends.contrib.linkedin.LinkedinBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+AUTH_PROFILE_MODULE = 'user.Participante'
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
@@ -185,9 +184,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 # exeções para o LoginRequiredMiddleware
 LOGIN_EXEMPT_URLS = (
     r'^$',
-    r'^user/registro/$',
     r'^social_auth/login/',
     r'^admin/',
+    r'^registro/',
+    r'^programacao/',
 )
 
 LOGIN_URL = '/user/login/'
@@ -201,16 +201,40 @@ SOCIAL_AUTH_FORCE_RANDOM_USERNAME = False
 SOCIAL_AUTH_DEFAULT_USERNAME      = 'socialauth_user'
 SOCIAL_AUTH_COMPLETE_URL_NAME     = 'socialauth_complete'
 SOCIAL_AUTH_ERROR_KEY             = 'socialauth_error'
+SOCIAL_AUTH_PROTECTED_USER_FIELDS = ['email',]
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_auth.backends.pipeline.social.social_auth_user',
+    'social_auth.backends.pipeline.associate.associate_by_email',
+    'social_auth.backends.pipeline.user.get_username',
+    'social_auth.backends.pipeline.user.create_user',
+    'social_auth.backends.pipeline.social.associate_user',
+    'social_auth.backends.pipeline.social.load_extra_data',
+    'social_auth.backends.pipeline.user.update_user_details'
+)
 
 TWITTER_CONSUMER_KEY              = '9c8EGa1XezAxoiucdEKWFQ'
 TWITTER_CONSUMER_SECRET           = 'jfmPVd4wRXPl0rMLOAFA5ropGAwiiwxhj5Q3TBw9w'
 
 FACEBOOK_APP_ID                   = '193079670855805'
 FACEBOOK_API_SECRET               = '066d37b55e9f76da578336786269a16d'
-
-LINKEDIN_CONSUMER_KEY             = 'f93jps39dxx5' 
-LINKEDIN_CONSUMER_SECRET          = '0vXZP7tpqAVjNi2H' 
+FACEBOOK_EXTENDED_PERMISSIONS     = ['email']
 
 GOOGLE_OAUTH2_CLIENT_ID           = '190133021467.apps.googleusercontent.com'
 GOOGLE_OAUTH2_CLIENT_SECRET       = 'DWY9KifZ5F0MzG2iJLxww2gL'
 GOOGLE_OAUTH2_USE_UNIQUE_USER_ID  = True
+GOOGLE_OAUTH_EXTRA_SCOPE = [
+    'https://www.googleapis.com/auth/plus.login',
+]
+
+# Email SMTP Settings
+# colocar um email e uma senha logo a baixo para que o registro de usuario funcione
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'exemplo@gmail.com'
+EMAIL_HOST_PASSWORD = 'senha'
+EMAIL_USE_TLS = True
+
+# Registration Settings
+ACCOUNT_ACTIVATION_DAYS = 14

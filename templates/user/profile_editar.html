@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}	
+	<h2>Editar Perfil</h2>
+	<form action="" method="post">
+		{% csrf_token %}
+		
+		{% for field in userForm.visible_fields %}
+  			<div {% if field.errors %}class="field_error"{% endif %}>
+   		 		
+   		 		{{ field.label_tag }}
+    			{{ field }}
+		    	{% for err in field.errors %}
+		    		<span class="error_message">{{ err }}</span>
+		    	{% endfor %}
+	  		</div>
+		{% endfor %}
+		
+		{% for field in profileForm.visible_fields %}
+  			<div {% if field.errors %}class="field_error"{% endif %}>
+   		 		
+   		 		{{ field.label_tag }}
+    			{{ field }}
+		    	{% for err in field.errors %}
+		    		<span class="error_message">{{ err }}</span>
+		    	{% endfor %}
+	  		</div>
+		{% endfor %}
+		
+		<input type="submit" value="Salvar" />
+	</form>
+{% endblock %}
