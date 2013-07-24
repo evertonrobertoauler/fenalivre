@@ -166,6 +166,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+AUTH_USER_MODEL = 'user.User'
 AUTH_PROFILE_MODULE = 'user.Participante'
 
 TEMPLATE_CONTEXT_PROCESSORS = (
