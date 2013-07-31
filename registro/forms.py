@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 class UserCreationForm(forms.ModelForm):
@@ -16,7 +16,7 @@ class UserCreationForm(forms.ModelForm):
         help_text=_("Enter the same password as above, for verification."))
 
     class Meta:
-        model = get_user_model()
+        model = User
         fields = ("username",)
 
     def clean_username(self):
@@ -24,8 +24,8 @@ class UserCreationForm(forms.ModelForm):
         self.cleaned_data["email"] = username
         
         try:
-            get_user_model()._default_manager.get(username=username)
-        except get_user_model().DoesNotExist:
+            User._default_manager.get(username=username)
+        except User.DoesNotExist:
             return username
         raise forms.ValidationError(self.error_messages['duplicate_username'])
 
