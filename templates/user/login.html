@@ -3,7 +3,7 @@
 
 {% block content %}
 	{% if form.errors %}
-		<p>{{ form.username.label_tag }} ou {{ form.password.label_tag }} inválidos. Tente novamente.</p>
+		<p>E-mail ou {{ form.password.label_tag }} inválidos. Tente novamente.</p>
 		<p>Caso você já tenha feito seu cadastro, faça a ativação da sua conta, apartir do link lhe enviado por email.</p>
 	{% endif %}
 
@@ -16,19 +16,21 @@
 			<a href="{% url 'socialauth_begin' 'twitter' %}"><img title="Twitter" src="{% static "src/img/twitter.png" %}"></a>
 		</p>
 
-		{% for field in form.visible_fields %}
-  			<div {% if field.errors %}class="field_error"{% endif %}>
-   		 		
-   		 		{{ field.label_tag }}
-    			{{ field }}
-		    	{% for err in field.errors %}
-		    		<span class="error_message">{{ err }}</span>
-		    	{% endfor %}
-	  		</div>
-		{% endfor %}
+		<div {% if field.errors %}class="error"{% endif %}>
+	 		<label for="id_username">E-mail</label>
+			{{ form.username }}
+	    	{% for err in field.username.errors %}
+	    		<span class="error_message">{{ err }}</span>
+	    	{% endfor %}
+	    	
+	 		{{ form.password.label_tag }}
+			{{ form.password }}
+	    	{% for err in field.password.errors %}
+	    		<span class="error_message">{{ err }}</span>
+	    	{% endfor %}
+  		</div>
 
 		<input type="submit" value="Login" />
-		<input type="hidden" name="next" value="{{ next }}" />
 	</form>
 	
 	<p><a href="/registro/registrar/">Registrar-se</a></p>

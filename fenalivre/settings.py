@@ -223,9 +223,6 @@ FACEBOOK_EXTENDED_PERMISSIONS     = ['email']
 GOOGLE_OAUTH2_CLIENT_ID           = '190133021467.apps.googleusercontent.com'
 GOOGLE_OAUTH2_CLIENT_SECRET       = 'DWY9KifZ5F0MzG2iJLxww2gL'
 GOOGLE_OAUTH2_USE_UNIQUE_USER_ID  = True
-GOOGLE_OAUTH_EXTRA_SCOPE = [
-    'https://www.googleapis.com/auth/plus.login',
-]
 
 # Email SMTP Settings
 # colocar um email e uma senha logo a baixo para que o registro de usuario funcione

@@ -2,13 +2,16 @@
 {% block content %}
 	<h1>Programação</h1>
 	
-	<h3>Palestras</h3>
-	{% for palestra in palestras %}
-		<p> {{ palestra.inicio }} {{ palestra }} {{ palestra.palestrante }}</p>
-	{% endfor %}
-	
-	<h3>Oficinas</h3>
-	{% for oficina in oficinas %}
-		<p> {{ oficina.inicio }} {{ oficina }} {{ oficina.palestrante }}</p>
-	{% endfor %}
+	<table>
+		{% for programacao in programacoes %}
+			<tr>
+				<td>{{ programacao.get_tipo_display }}</td>
+				<td>{{ programacao.inicio }}</td>
+ 				<td>{{ programacao.termino }}</td>
+				<td>{{ programacao }}</td>
+				<td>{{ programacao.palestrante|default_if_none:"" }}</td>
+                <td>{{ programacao.sala }}</td>
+			</tr>
+		{% endfor %}
+	</table>
 {% endblock %}

@@ -1,5 +1,8 @@
 from django.contrib import admin
-from programacao.models import Palestra, Oficina
+from programacao.models import Programacao
 
-admin.site.register(Palestra)
-admin.site.register(Oficina)
+class ProgramacaoAdmin(admin.ModelAdmin):
+    list_display = ('inicio', 'termino', 'titulo', 'sala', 'palestrante')
+    list_display_links = ('inicio', 'termino', 'titulo', 'sala', 'palestrante')
+
+admin.site.register(Programacao, ProgramacaoAdmin)
