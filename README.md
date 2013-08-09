@@ -31,10 +31,6 @@ caso contrário não precisa, o sistema vai funcionar igual
 	EMAIL_HOST_PASSWORD = 'senha'
 
 para rodar o sistema é só dar um
- 
-	python manage.py syncdb
-	
-o syncdb vai solicitar um email e senha para usuário administrador, estes serão os seus dados para login no sistema como administrador
 
 	python manage.py runserver
 	
@@ -42,3 +38,9 @@ e já estará rodando, no endereço default: http://127.0.0.1:8000/
 para desativar o virtualenv apos os testes é so dar um
 
 	deactivate
+
+#Sobre HTML, CSS e images
+
+Os arquivos HTML estão na pasta templates, todos os arquivos estendem o arquivo templates/base.html
+
+Arquivos CSS estão em static/css e imagens em static/img
