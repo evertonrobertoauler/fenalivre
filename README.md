@@ -1,4 +1,10 @@
 #Sistema para inscrições para o evento Fenalivre
+
+Para o acesso no painel administrativo http://127.0.0.1:8000/admin, seguem as informações necessarias
+
+	Usuário: fenalivre
+	Senha: fenalivre
+
 ##Desenvolvido com django
 
 é necessaria instalação dos segintes pacotes:
