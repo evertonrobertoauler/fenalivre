@@ -24,6 +24,7 @@ instale as dependências necessarias
 	pip install django
 	pip install django-social-auth
 	pip install django-registration
+	pip install Geraldo
 
 após obtenha o repositório do github e siga os demais passos:
 

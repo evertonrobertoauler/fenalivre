@@ -15,5 +15,6 @@ urlpatterns = patterns('',
     url(r'^social_auth/login/', include('social_auth.urls')),
     url(r'^user/', include('user.urls')),
     url(r'^registro/', include('registro.urls')),
-    url(r'^programacao/', 'programacao.views.index'),
+    url(r'^programacao/$', 'programacao.views.index'),
+    url(r'^programacao/pdf/$', 'programacao.views.pdf'),
 )
