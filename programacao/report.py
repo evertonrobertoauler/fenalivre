@@ -33,7 +33,7 @@ class ProgramacaoReport(Report):
                         style={'fontName': 'Helvetica-Bold', 'fontSize': 14, 'alignment': TA_CENTER}),
             Label(text= u"Início",     top=1.3*cm, left=1*cm),
             Label(text=u"Término",     top=1.3*cm, left=2.5*cm),
-            Label(text=u"Titulo",      top=1.3*cm, left=5*cm),
+            Label(text=u"Título",      top=1.3*cm, left=5*cm),
             Label(text=u"Palestrante", top=1.3*cm, left=12*cm),
             Label(text=u"Sala",        top=1.3*cm, left=16*cm),
         ]
