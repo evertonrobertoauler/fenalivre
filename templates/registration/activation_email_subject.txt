@@ -1,1 +1,0 @@
-Fenalivre: Ative seu cadasto, você tem {{expiration_days}} dias.
