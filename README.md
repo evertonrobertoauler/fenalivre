@@ -52,3 +52,6 @@ para desativar o virtualenv apos os testes é so dar um
 Os arquivos HTML estão na pasta templates, todos os arquivos estendem o arquivo templates/base.html
 
 Arquivos CSS estão em static/css e imagens em static/img
+
+#Arquivo do Bootstrap
+Todos os arquivos estão em static/css/, static/js/ e static/img/.
