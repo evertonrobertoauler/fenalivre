@@ -52,6 +52,15 @@ class Programacao(models.Model):
     def __unicode__(self):
         return self.titulo
     
+    def getInicio(self):
+        return self.inicio.strftime("%H:%M")
+    
+    def getTermino(self):
+        return self.termino.strftime("%H:%M")
+    
+    def getPalestrante(self):
+        return self.palestrante or " "
+    
     class Meta:
         verbose_name = u"Programação"
         verbose_name_plural = u"Programações"

@@ -26,10 +26,10 @@
 		{% for programacao in page.programacaopage.programacao_set.all %}
 			<tr>
 				<td>{{ programacao.get_tipo_display }}</td>
-				<td>{{ programacao.inicio }}</td>
- 				<td>{{ programacao.termino }}</td>
+				<td>{{ programacao.getInicio }}</td>
+ 				<td>{{ programacao.getTermino }}</td>
 				<td>{{ programacao }}</td>
-				<td>{{ programacao.palestrante|default_if_none:"" }}</td>
+				<td>{{ programacao.getPalestrante }}</td>
                 <td>{{ programacao.sala }}</td>
 			</tr>
 		{% endfor %}

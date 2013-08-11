@@ -22,7 +22,7 @@ class ProgramacaoReport(Report):
             ObjectValue(attribute_name='inicio', left=1*cm, get_value=lambda instance: (instance.inicio.strftime("%H:%M"))),
             ObjectValue(attribute_name='termino', left=2.5*cm, get_value=lambda instance: (instance.inicio.strftime("%H:%M"))),
             ObjectValue(attribute_name='titulo', left=5*cm),
-            ObjectValue(attribute_name='palestrante', left=12*cm),
+            ObjectValue(attribute_name='palestrante', left=12*cm, get_value=lambda instance: (instance.getPalestrante())),
             ObjectValue(attribute_name='sala', left=16*cm),
         )
 
