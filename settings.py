@@ -1,4 +1,6 @@
-
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+# Django settings for fenalivre project.
 ######################
 # MEZZANINE SETTINGS #
 ######################
@@ -87,7 +89,7 @@ USE_SOUTH = True
 # In the format (('Full Name', 'email@example.com'),
 #                ('Full Name', 'anotheremail@example.com'))
 ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
+    (u'Everton R. Auler', 'evertonrobertoauler@gmail.com'),
 )
 MANAGERS = ADMINS
 
@@ -98,14 +100,14 @@ MANAGERS = ADMINS
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = None
+TIME_ZONE = 'America/Sao_Paulo'
 
 # If you set this to True, Django will use timezone-aware datetimes.
 USE_TZ = True
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'us'
+LANGUAGE_CODE = 'pt-BR'
 
 # A boolean that turns on/off debug mode. When set to ``True``, stack traces
 # are displayed for error pages. Should always be set to ``False`` in
@@ -119,7 +121,7 @@ SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = False
+USE_I18N = True
 
 # Make these unique, and don't share it with anybody.
 SECRET_KEY = "61f57c88-1861-4aa6-a1f2-c6d870e90dd779fd6986-98f4-448c-8c5a-e275f81b26489cc198da-150d-42ca-83ef-f751714851be"
@@ -138,8 +140,22 @@ TEMPLATE_LOADERS = (
 
 AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
 
+AUTH_PROFILE_MODULE = 'evento.Participante'
 
 ACCOUNTS_NO_USERNAME = True
+ACCOUNTS_VERIFICATION_REQUIRED = True
+ACCOUNTS_APPROVAL_REQUIRED = False
+
+ACCOUNTS_PROFILE_FORM_EXCLUDE_FIELDS = (
+    "esteve_presente",
+)
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'exemplo@gmail.com'
+EMAIL_HOST_PASSWORD = 'senha'
+EMAIL_USE_TLS = True
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -239,13 +255,15 @@ INSTALLED_APPS = (
     "mezzanine.conf",
     "mezzanine.core",
     "mezzanine.generic",
-    "mezzanine.blog",
+    #"mezzanine.blog",
     "mezzanine.forms",
     "mezzanine.pages",
     "mezzanine.galleries",
-    "mezzanine.twitter",
+    #"mezzanine.twitter",
     "mezzanine.accounts",
     #"mezzanine.mobile",
+    'social_auth',
+    'evento',
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -261,6 +279,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.core.context_processors.tz",
     "mezzanine.conf.context_processors.settings",
+    'social_auth.context_processors.social_auth_by_name_backends',
+    'social_auth.context_processors.social_auth_backends',
+    'social_auth.context_processors.social_auth_by_type_backends',
+    'social_auth.context_processors.social_auth_login_redirect',
 )
 
 # List of middleware classes to use. Order is important; in the request phase,
@@ -330,6 +352,45 @@ DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
 #     "NEVERCACHE_KEY": NEVERCACHE_KEY,
 # }
 
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+    'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.google.GoogleOAuth2Backend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGIN_REDIRECT_URL = '/'
+LOGIN_ERROR_URL = '/'
+
+SOCIAL_AUTH_COMPLETE_URL_NAME     = 'socialauth_complete'
+SOCIAL_AUTH_ASSOCIATE_URL_NAME    = 'socialauth_associate_complete'
+SOCIAL_AUTH_CREATE_USERS          = True
+SOCIAL_AUTH_FORCE_RANDOM_USERNAME = False
+SOCIAL_AUTH_DEFAULT_USERNAME      = 'socialauth_user'
+SOCIAL_AUTH_COMPLETE_URL_NAME     = 'socialauth_complete'
+SOCIAL_AUTH_ERROR_KEY             = 'socialauth_error'
+SOCIAL_AUTH_PROTECTED_USER_FIELDS = ['email',]
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_auth.backends.pipeline.social.social_auth_user',
+    'social_auth.backends.pipeline.associate.associate_by_email',
+    'social_auth.backends.pipeline.user.get_username',
+    'social_auth.backends.pipeline.user.create_user',
+    'social_auth.backends.pipeline.social.associate_user',
+    'social_auth.backends.pipeline.social.load_extra_data',
+    'social_auth.backends.pipeline.user.update_user_details'
+)
+
+TWITTER_CONSUMER_KEY              = '9c8EGa1XezAxoiucdEKWFQ'
+TWITTER_CONSUMER_SECRET           = 'jfmPVd4wRXPl0rMLOAFA5ropGAwiiwxhj5Q3TBw9w'
+
+FACEBOOK_APP_ID                   = '193079670855805'
+FACEBOOK_API_SECRET               = '066d37b55e9f76da578336786269a16d'
+FACEBOOK_EXTENDED_PERMISSIONS     = ['email']
+
+GOOGLE_OAUTH2_CLIENT_ID           = '190133021467.apps.googleusercontent.com'
+GOOGLE_OAUTH2_CLIENT_SECRET       = 'DWY9KifZ5F0MzG2iJLxww2gL'
+GOOGLE_OAUTH2_USE_UNIQUE_USER_ID  = True
 
 ##################
 # LOCAL SETTINGS #

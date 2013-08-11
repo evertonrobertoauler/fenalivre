@@ -16,6 +16,8 @@ urlpatterns = patterns("",
     # Change the admin prefix here to use an alternate URL for the
     # admin interface, which would be marginally more secure.
     ("^admin/", include(admin.site.urls)),
+    url(r'^social_auth/login/', include('social_auth.urls')),
+    url(r'^programacao/pdf/', 'evento.views.pdf'),
 
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.

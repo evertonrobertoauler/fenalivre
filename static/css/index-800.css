@@ -1,0 +1,107 @@
+body{
+	margin: 0px;
+	padding: 0px;
+	background: #d6d6d6; /* Old browsers */
+	width: 100%;
+	height: 80%;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+header{
+	position: relative;
+	margin:0px auto;
+	background-color: #064C6C;
+	width: 800px;
+	height: 175px;
+	
+	border-radius: 40% 40% 80% 80%; 
+	top:-90px;
+	box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.5);
+}
+
+article{
+	position:relative;
+	width: 100%;
+	height: 286px;
+}
+
+section{
+	position:absolute;
+	width: 100%;
+	height: 25%;
+	background-color: #0093D6;
+}
+
+header img{
+	margin-top:100px;
+	margin-left: 250px;
+}
+
+#tux-position{
+	position: relative;
+	display: block;
+	width:  220px;
+	height: 234px;
+	margin-left: 60%;
+	margin-top: -10px;
+	background-image: url('../img/tux-800.png');
+}
+
+#tux-caixa{
+	position:absolute;
+	display: block;
+	width:  290px;
+	height: 190px;
+	top: -50px;
+	background-image: url('../img/inbox-800.png');
+	background-repeat: no-repeat;
+}
+
+#inscricoes{
+	display: block;
+	margin-top: -170px;
+	margin-left: 25%;
+	width: 400px;
+	color:#064C6C;
+	font-size: 1.8em;
+}
+
+#saiba-mais{
+	text-decoration: none;
+	margin-top: 10px;
+	margin-left: 165px;
+	font-size: 0.7em;
+	color: white;
+}
+
+#saiba-mais ul{
+	margin-left:0; 
+	padding-left:0px; 
+	border:0px;
+}
+
+#saiba-mais ul li{
+	list-style: none;
+	padding: 0px;
+		
+}
+
+#saiba-mais a{
+	text-decoration: none;
+	color: white;
+}
+
+#saiba-mais a:hover{
+	text-decoration:none;
+	color:#064C6C;
+}
+
+.columns{
+	-moz-column-count:5;
+    -moz-column-gap:20px;
+    -moz-column-rule: 1px solid white;
+}
+
+.columns span{
+	font-weight:bold;
+}

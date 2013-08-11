@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load mezzanine_tags keyword_tags %}
+
+{% block meta_title %}{{ page.meta_title }}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+{% keywords_for page as keywords %}
+{% for keyword in keywords %}
+    {% if not forloop.first %}, {% endif %}
+    {{ keyword }}
+{% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ page.description }}
+{% endmetablock %}{% endblock %}
+
+{% block title %}
+{% editable page.title %}{{ page.title }}{% endeditable %}
+{% endblock %}
+
+{% block main %}
+	<h2>Programação</h2>
+	
+	<table class="table table-striped">
+		{% for programacao in page.programacaopage.programacao_set.all %}
+			<tr>
+				<td>{{ programacao.get_tipo_display }}</td>
+				<td>{{ programacao.inicio }}</td>
+ 				<td>{{ programacao.termino }}</td>
+				<td>{{ programacao }}</td>
+				<td>{{ programacao.palestrante|default_if_none:"" }}</td>
+                <td>{{ programacao.sala }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endblock %}
+
+
