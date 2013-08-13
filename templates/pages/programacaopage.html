@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load mezzanine_tags keyword_tags %}
+{% load mezzanine_tags keyword_tags verbose_names %}
 
 {% block meta_title %}{{ page.meta_title }}{% endblock %}
 
@@ -24,6 +24,16 @@
 	
 	<table class="table table-striped">
 		{% for programacao in page.programacaopage.programacao_set.all %}
+		    {% if forloop.first %}
+            <tr>
+				<th>{% get_verbose_name programacao "tipo" %}</th>
+				<th>{% get_verbose_name programacao "inicio" %}</th>
+				<th>{% get_verbose_name programacao "termino" %}</th>
+				<th>{% get_verbose_name programacao "titulo" %}</th>
+				<th>{% get_verbose_name programacao "palestrante" %}</th>
+				<th>{% get_verbose_name programacao "sala" %}</th>
+			</tr>
+            {% endif %}
 			<tr>
 				<td>{{ programacao.get_tipo_display }}</td>
 				<td>{{ programacao.getInicio }}</td>
