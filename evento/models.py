@@ -25,7 +25,7 @@ class Profile(models.Model):
         abstract = True
     
     def __unicode__(self):
-        return self.user.first_name and "%s %s" % (self.user.first_name, self.user.last_name) or self.user.username
+        return self.user.first_name and "%s %s" % (self.user.first_name, self.user.last_name) or self.user.email or self.user.username
     
     
 class Participante(Profile):

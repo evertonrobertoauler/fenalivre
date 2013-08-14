@@ -4,12 +4,12 @@
     {% trans "Logged in as: " %}
     {% url "profile" request.user.username as profile_url %}
     {% if profile_url %}
-        <a href="{{ profile_url }}">{{ request.user|username_or:"email" }}</a>
+        <a href="{{ profile_url }}">{{ request.user.get_profile }}</a>
         <br>
         <a href="{% url "profile_update" %}"
             class="btn btn-small btn-account">{% trans "Update profile" %}</a>
     {% else %}
-        <a href="{% url "profile_update" %}">{{ request.user|username_or:"email" }}</a>
+        <a href="{% url "profile_update" %}">{{ request.user.get_profile }}</a>
     {% endif %}
     <a href="{% url "logout" %}?next={{ request.path }}"
         class="btn btn-small btn-danger btn-account">{% trans "Log out" %}</a>
