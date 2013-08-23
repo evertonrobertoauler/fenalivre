@@ -1,4 +1,4 @@
-{% load i18n future pages_tags %}
+{% load i18n future pages_tags target_link %}
 {% spaceless %}
 {% if page_branch_in_menu %}
 
@@ -13,7 +13,7 @@
     {% if page.in_menu %}
     <li class="dropdown{% if page.is_current_or_ascendant %} active{% endif %}"
         id="dropdown-menu-{{ page.html_id }}">
-        <a href="{{ page.get_absolute_url }}">
+        <a {% target_link page %} href="{{ page.get_absolute_url }}">
             {{ page.title }}
             {% if page.has_children_in_menu %}<span class="caret"></span>{% endif %}
         </a>
@@ -31,7 +31,7 @@
     {% if page.in_menu %}
     <li{% if page.is_current_or_ascendant %} class="active"{% endif %}
         id="dropdown-menu-{{ page.html_id }}">
-        <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+        <a {% target_link page %} href="{{ page.get_absolute_url }}">{{ page.title }}</a>
     </li>
     {% endif %}
     {% endfor %}

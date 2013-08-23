@@ -1,4 +1,4 @@
-{% load i18n future pages_tags %}
+{% load i18n future pages_tags target_link %}
 
 {% spaceless %}
 {% if page_branch_in_menu %}
@@ -22,7 +22,7 @@
         {% else %}
         <li {% if page.is_current_or_ascendant %}class="active"{% endif %}
             id="footer-menu-{{ page.html_id }}">
-            <a href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
+            <a {% target_link page %} href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
         {% endif %}
     {% endif %}
 

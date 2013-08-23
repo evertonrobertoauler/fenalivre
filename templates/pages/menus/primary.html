@@ -1,4 +1,4 @@
-{% load pages_tags i18n future %}
+{% load pages_tags i18n future target_link %}
 
 {% spaceless %}
 <ul id="primary-menu" class="nav pull-right">
@@ -11,7 +11,7 @@
     {% if page.in_menu %}
     <li id="primary-menu-{{ page.html_id }}"
         class="{% if page.is_current_or_ascendant %}active{% endif %}{% if forloop.last %} last{% endif %}">
-        <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+        <a {% target_link page %} href="{{ page.get_absolute_url }}">{{ page.title }}</a>
     </li>
     {% endif %}
     {% endfor %}
