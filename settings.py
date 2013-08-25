@@ -265,7 +265,6 @@ INSTALLED_APPS = (
     #"mezzanine.mobile",
     'social_auth',
     'evento',
-    #'south',
 )
 
 # List of processors used by RequestContext to populate the context.
