@@ -93,16 +93,12 @@
     {% block main %}{% endblock %}
 </div>
 
-<div class="span3 right">
+<div class="span3 right text-center">
     {% nevercache %}
     {% include "includes/user_panel.html" %}
     {% endnevercache %}
     <div class="panel">
-    {% block right_panel %}
-    {% ifinstalled mezzanine.twitter %}
-    {% include "twitter/tweets.html" %}
-    {% endifinstalled %}
-    {% endblock %}
+    {% include "accounts/includes/help_panel.html" %}
     </div>
 </div>
 

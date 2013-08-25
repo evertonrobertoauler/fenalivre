@@ -1,0 +1,14 @@
+<h3>Dúvidas</h3>
+
+<ul class="text-left">
+	{% if request.user.is_authenticated %}
+	    {% if request.user.get_profile.estara_presente %}
+		  <li>Caso você por algum motivo não puder comparecer ao evento, atualize sua Inscrição, com Estará presente: Não.</li>
+	    {% else %}
+		  <li>Para confirmar sua participação no evento, atualize sua Inscrição, com Estará presente: Sim.</li>
+	    {% endif %}
+	{% else %}
+		<li>Você pode realizar sua inscrição utilizando o serviço de autenticação OAuth, clicando nos links do Google, Facebook ou Twitter.</li>
+		<li>Você pode utilizar a autenticação do nosso próprio site clicando em Inscrição.</li>
+	{% endif %}
+</ul>
