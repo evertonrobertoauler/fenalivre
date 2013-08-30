@@ -19,11 +19,11 @@ class ProgramacaoReport(Report):
     class band_detail(ReportBand):
         height = 0.5*cm
         elements=(
-            ObjectValue(attribute_name='inicio', left=1*cm, get_value=lambda instance: (instance.inicio.strftime("%H:%M"))),
-            ObjectValue(attribute_name='termino', left=2.5*cm, get_value=lambda instance: (instance.inicio.strftime("%H:%M"))),
-            ObjectValue(attribute_name='titulo', left=5*cm),
-            ObjectValue(attribute_name='palestrante', left=12*cm, get_value=lambda instance: (instance.getPalestrante())),
-            ObjectValue(attribute_name='sala', left=16*cm),
+            ObjectValue(attribute_name='inicio',      left=1*cm,   get_value=lambda instance: (instance.inicio.strftime("%H:%M"))),
+            ObjectValue(attribute_name='termino',     left=2.5*cm, get_value=lambda instance: (instance.termino.strftime("%H:%M"))),
+            ObjectValue(attribute_name='titulo',      left=4.5*cm, width=7*cm, get_value=lambda instance: (instance.getTitulo())),
+            ObjectValue(attribute_name='palestrante', left=13*cm,  get_value=lambda instance: (instance.getPalestrante())),
+            ObjectValue(attribute_name='sala',        left=17*cm),
         )
 
     class band_page_header(ReportBand):
@@ -31,11 +31,11 @@ class ProgramacaoReport(Report):
         elements = [
             SystemField(expression='%(report_title)s', top=0.1*cm, left=0, width=BAND_WIDTH,
                         style={'fontName': 'Helvetica-Bold', 'fontSize': 14, 'alignment': TA_CENTER}),
-            Label(text= u"Início",     top=1.3*cm, left=1*cm),
+            Label(text=u"Início",      top=1.3*cm, left=1*cm),
             Label(text=u"Término",     top=1.3*cm, left=2.5*cm),
-            Label(text=u"Título",      top=1.3*cm, left=5*cm),
-            Label(text=u"Palestrante", top=1.3*cm, left=12*cm),
-            Label(text=u"Sala",        top=1.3*cm, left=16*cm),
+            Label(text=u"Título",      top=1.3*cm, left=4.5*cm, width=7*cm),
+            Label(text=u"Palestrante", top=1.3*cm, left=13*cm),
+            Label(text=u"Sala",        top=1.3*cm, left=17*cm),
         ]
         borders = {'bottom': True}
 

@@ -64,6 +64,9 @@ class Programacao(models.Model):
     def getPalestrante(self):
         return self.palestrante or " "
     
+    def getTitulo(self):
+        return " - " . join([ds for ds in [self.titulo, self.descricao] if ds])
+    
     class Meta:
         verbose_name = u"Programação"
         verbose_name_plural = u"Programações"
