@@ -3,7 +3,7 @@
 
 from django.db import models
 from django.contrib.auth.models import User
-from mezzanine.pages.models import Page, Link
+from mezzanine.pages.models import Page
 
 TIPO = ((1, u'Palestra'),
         (2, u'Intervalo'),
@@ -43,8 +43,8 @@ class NovoLink(Page):
     new_tab = models.BooleanField("Abrir em nova Aba")
     
 class Programacao(models.Model):
-    inicio = models.TimeField(u'Hr. Início')
-    termino = models.TimeField(u'Hr. Término')
+    inicio = models.TimeField(u'Início')
+    termino = models.TimeField(u'Fim')
     titulo = models.CharField(u'Titulo', max_length=40)
     descricao = models.TextField(u'Descrição', null=True, blank=True)
     palestrante = models.ForeignKey(Palestrante, null=True, blank=True)
