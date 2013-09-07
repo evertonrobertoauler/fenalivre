@@ -26,16 +26,21 @@ class Profile(models.Model):
     
     def __unicode__(self):
         return self.user.first_name and "%s %s" % (self.user.first_name, self.user.last_name) or self.user.email or self.user.username
-    
-    
-class Participante(Profile):
-    estara_presente = models.BooleanField(u'Estará presente', default=True, choices=SIM_NAO)
-    esteve_presente = models.BooleanField(u'Esteve realmente presente', default=False, choices=SIM_NAO)
-    
+
     
 class Palestrante (Profile):
     pass
 
+
+class ParticipanteManager(models.Manager):
+    def get_query_set(self):
+        return super(ParticipanteManager, self).get_query_set().exclude(user__pk__in=Palestrante.objects.all().values_list('user__pk', flat=True))
+        
+class Participante(Profile):
+    estara_presente = models.BooleanField(u'Estará presente', default=True, choices=SIM_NAO)
+    esteve_presente = models.BooleanField(u'Esteve realmente presente', default=False, choices=SIM_NAO)
+    objects = ParticipanteManager()
+    
 class ProgramacaoPage(Page):
     pass
 
